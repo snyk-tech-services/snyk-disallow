@@ -1,0 +1,64 @@
+{
+  "prepare": [
+    "@semantic-release/npm",
+    {
+      "//": "adds a file to identify a build as a standalone binary",
+      "path": "@semantic-release/exec",
+      "cmd": "echo '' > dist/STANDALONE"
+    },
+    {
+      "//": "build the alpine, macos, linux and windows binaries",
+      "path": "@semantic-release/exec",
+      "cmd": "npx pkg . -t node12-linux-x64,node12-macos-x64,node12-win-x64"
+    },
+    {
+      "//": "shasum all binaries",
+      "path": "@semantic-release/exec",
+      "cmd": "shasum -a 256 snyk-disallow-linux > snyk-disallow-linux.sha256 && shasum -a 256 snyk-disallow-macos > snyk-disallow-macos.sha256 && shasum -a 256 snyk-disallow-win.exe > snyk-disallow-win.exe.sha256"
+    },
+    {
+      "//": "removes the file we use to identify a build as a standalone binary",
+      "path": "@semantic-release/exec",
+      "cmd": "rm dist/STANDALONE"
+    }
+  ],
+  "publish": [
+    "@semantic-release/npm",
+    {
+      "path": "@semantic-release/github",
+      "assets": [
+        {
+          "path": "./snyk-disallow-linux",
+          "name": "snyk-disallow-linux",
+          "label": "snyk-disallow-linux"
+        },
+        {
+          "path": "./snyk-disallow-linux.sha256",
+          "name": "snyk-disallow-linux.sha256",
+          "label": "snyk-disallow-linux.sha256"
+        },
+        {
+          "path": "./snyk-disallow-macos",
+          "name": "snyk-disallow-macos",
+          "label": "snyk-disallow-macos"
+        },
+        {
+          "path": "./snyk-disallow-macos.sha256",
+          "name": "snyk-disallow-macos.sha256",
+          "label": "snyk-disallow-macos.sha256"
+        },
+        {
+          "path": "./snyk-disallow-win.exe",
+          "name": "snyk-disallow-win.exe",
+          "label": "snyk-disallow-win.exe"
+        },
+        {
+          "path": "./snyk-disallow-win.exe.sha256",
+          "name": "snyk-disallow-win.exe.sha256",
+          "label": "snyk-disallow-win.exe.sha256"
+        }
+      ]
+    }
+  ],
+  "branches": ["master"]
+}

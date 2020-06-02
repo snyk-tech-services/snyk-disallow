@@ -1,0 +1,25 @@
+{
+    "schemaVersion": "1.2.0",
+    "pkgManager": {
+    "name": ""
+    },
+    "pkgs": [
+        {
+            "id": "",
+            "info": {
+            "name": "",
+            "version": "1.0.0"
+            }
+        }
+    ],
+    "graph": {
+        "rootNodeId": "root-node",
+        "nodes": [
+            {
+            "nodeId": "root-node",
+            "pkgId": "",
+            "deps": []
+            }
+        ]
+    }
+}
