@@ -25,7 +25,8 @@ export default class Delete extends SnykCommand {
 
     try{
       let listProjectID = ''
-      const allListProjects: ProjectListForOrg = await this.requestManager.request({verb: "POST", url: `/org/${this.listOrgID}/projects`, body: '{}'})
+      const responseAllListProjects = await this.requestManager.request({verb: "POST", url: `/org/${this.listOrgID}/projects`, body: '{}'})
+      const allListProjects: ProjectListForOrg = responseAllListProjects.data
       allListProjects.projects.forEach(project => {
         if(project.name == args.listName){
           listProjectID = project.id
