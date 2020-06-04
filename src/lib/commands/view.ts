@@ -23,7 +23,8 @@ export default class View extends SnykCommand {
 
     try{
       let listID = ''
-      const list: ProjectListForOrg = await this.requestManager.request({verb: "GET", url: `/org/${this.listOrgID}/projects`})
+      const responseList = await this.requestManager.request({verb: "GET", url: `/org/${this.listOrgID}/projects`})
+      const list: ProjectListForOrg = responseList.data
       
       list.projects.forEach(project => {
         if(project.name == args.listName) {
@@ -33,8 +34,8 @@ export default class View extends SnykCommand {
       if(listID == ''){
         this.error(`Disallow list ${args.listName} Cannot be found`, {exit: 2})
       }
-
-      const graphFromApi: depGraphFromAPI  = await this.requestManager.request({verb: "GET", url: `/org/${this.listOrgID}/project/${args.listName}/dep-graph`})
+      const responseGraphFromApi = await this.requestManager.request({verb: "GET", url: `/org/${this.listOrgID}/project/${args.listName}/dep-graph`})
+      const graphFromApi: depGraphFromAPI = responseGraphFromApi.data
       const graph: depGraph.DepGraph = await depGraph.createFromJSON(JSON.parse(JSON.stringify(graphFromApi.depGraph)))
       
       graph.getPkgs().slice(1).forEach(pkg => {

@@ -28,7 +28,8 @@ export default class CheckProject extends SnykCommand {
       cli.action.start('Retrieving project dep graph')
       // Check if project exists and retrieve graph
       let projectID = ''
-      const allProjectslist: ProjectListForOrg = await this.requestManager.request({verb: "GET", url: `/org/${args.orgID}/projects`})
+      const responseAllProjectsList = await this.requestManager.request({verb: "GET", url: `/org/${args.orgID}/projects`})
+      const allProjectslist: ProjectListForOrg = responseAllProjectsList.data
       allProjectslist.projects.forEach(project => {
         if(project.id == args.projectID) {
           projectID = project.id
@@ -37,8 +38,8 @@ export default class CheckProject extends SnykCommand {
       if(projectID == ''){
         this.error(`Project ${args.projectID} Cannot be found in ${args.orgID}`, {exit: 2})
       }
-
-      const projectDepGraphFromApi: depGraphFromAPI  = await this.requestManager.request({verb: "GET", url: `/org/${args.orgID}/project/${projectID}/dep-graph`})
+      const responseProjectDepGraphFromApi = await this.requestManager.request({verb: "GET", url: `/org/${args.orgID}/project/${projectID}/dep-graph`})
+      const projectDepGraphFromApi: depGraphFromAPI = responseProjectDepGraphFromApi.data 
       const projectDepGraph: depGraph.DepGraph = await depGraph.createFromJSON(JSON.parse(JSON.stringify(projectDepGraphFromApi.depGraph)))
 
       const packageManager = projectDepGraph.pkgManager.name
@@ -47,7 +48,8 @@ export default class CheckProject extends SnykCommand {
       cli.action.start('Retrieving disallow list(s)')
       let listsArray: { listID: string,
                          listName: string}[] = []
-      const list: ProjectListForOrg = await this.requestManager.request({verb: "GET", url: `/org/${this.listOrgID}/projects`})
+      const responseList = await this.requestManager.request({verb: "GET", url: `/org/${this.listOrgID}/projects`})
+      const list: ProjectListForOrg = responseList.data
       if(typeof args.listName != 'undefined'){
         list.projects.forEach(project => {
           if(project.name == args.listName && project.type == packageManager) {
@@ -73,7 +75,8 @@ export default class CheckProject extends SnykCommand {
       
       for(let i=0; i< listsArray.length; i++) {
         let list = listsArray[i]
-        const graphFromApi: depGraphFromAPI  = await this.requestManager.request({verb: "GET", url: `/org/${this.listOrgID}/project/${list.listID}/dep-graph`})
+        const responseGraphFromApi = await this.requestManager.request({verb: "GET", url: `/org/${this.listOrgID}/project/${list.listID}/dep-graph`})
+        const graphFromApi: depGraphFromAPI = responseGraphFromApi.data
         const graph: depGraph.DepGraph = await depGraph.createFromJSON(JSON.parse(JSON.stringify(graphFromApi.depGraph)))
         listPkgs = listPkgs.concat(graph.getPkgs().slice(1).map(pkg => {return {'packageID': `${pkg.name}@${pkg.version}`, 'listName': `${list.listName}`}}))
       }    

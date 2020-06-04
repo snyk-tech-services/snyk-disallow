@@ -28,7 +28,8 @@ export default class Add extends SnykCommand {
     try{
       
       let listID = ''
-      const allListProjects: ProjectListForOrg = await this.requestManager.request({verb: "POST", url: `/org/${this.listOrgID}/projects`, body: '{}'})
+      const responseAllListProjects = await this.requestManager.request({verb: "POST", url: `/org/${this.listOrgID}/projects`, body: '{}'})
+      const allListProjects: ProjectListForOrg = responseAllListProjects.data
       allListProjects.projects.forEach(project => {
         if(project.name == args.listName){
           listID = project.id
@@ -38,8 +39,8 @@ export default class Add extends SnykCommand {
       if(listID == '') {
         this.error(`Error removing dep, ${args.listName} not found`, {exit: 2})
       }
-
-      let existingDepGraphFromAPI: depGraphFromAPI = await this.requestManager.request({verb: "GET", url: `/org/${this.listOrgID}/project/${listID}/dep-graph`})
+      const responseExistingDepGraphFromApi = await this.requestManager.request({verb: "GET", url: `/org/${this.listOrgID}/project/${listID}/dep-graph`})
+      let existingDepGraphFromAPI: depGraphFromAPI = responseExistingDepGraphFromApi.data
       let pkgRToRemoveIndexInList = -1
       existingDepGraphFromAPI.depGraph.pkgs.forEach((pkg, index) => {
         if(pkg.id == `${args.dep}@${args.version}`){

@@ -60,8 +60,8 @@ export default class Create extends SnykCommand {
 
     try{
       
-
-      const alllistProjects: ProjectListForOrg = await this.requestManager.request({verb: "POST", url: `/org/${this.listOrgID}/projects`, body: '{}'})
+      const responseAllListProjects = await this.requestManager.request({verb: "POST", url: `/org/${this.listOrgID}/projects`, body: '{}'})
+      const alllistProjects: ProjectListForOrg = responseAllListProjects.data
       alllistProjects.projects.forEach(project => {
         if(project.name == args.listName){
           this.error(`List ${args.listName} already exists.`, {exit: 2})
@@ -69,7 +69,7 @@ export default class Create extends SnykCommand {
       });
 
       const response = await this.requestManager.request({verb: "POST", url: `/monitor/dep-graph?org=${this.listOrgID}`, body: emptyDepGraph})
-      this.log(`List created at ${response.uri}`)
+      this.log(`List created at ${response.data.uri}`)
 
     } catch (err) {
         this.error(err.message, {exit: 2})
