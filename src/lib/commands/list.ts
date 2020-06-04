@@ -17,7 +17,8 @@ export default class List extends SnykCommand {
     this.log(`        Listing disallow lists in ${this.listOrgName}   `)
     this.log(`=========================================================`)
     try{
-      const projectList: ProjectListForOrg = await this.requestManager.request({verb: "GET", url: `/org/${this.listOrgID}/projects`})
+      const responseProjectList = await this.requestManager.request({verb: "GET", url: `/org/${this.listOrgID}/projects`})
+      const projectList: ProjectListForOrg = responseProjectList.data
       this.log(`Found ${projectList.projects.length} list(s)`)
       projectList.projects.forEach(list => {
         this.log(`=> ${list.name}`)

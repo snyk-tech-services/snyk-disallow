@@ -37,7 +37,8 @@ export default class Add extends SnykCommand {
     try{
       
       let listID = ''
-      const allListProjects: ProjectListForOrg = await this.requestManager.request({verb: "POST", url: `/org/${this.listOrgID}/projects`, body: '{}'})
+      const responseProjects = await this.requestManager.request({verb: "POST", url: `/org/${this.listOrgID}/projects`, body: '{}'})
+      const allListProjects: ProjectListForOrg = responseProjects.data
       allListProjects.projects.forEach(project => {
         if(project.name == args.disallowListName){
           listID = project.id
@@ -47,8 +48,8 @@ export default class Add extends SnykCommand {
       if(listID == '') {
         this.error(`Error adding dep, ${args.disallowListName} not found`, {exit: 2})
       }
-
-      let existingDepGraphFromAPI: depGraphFromAPI = await this.requestManager.request({verb: "GET", url: `/org/${this.listOrgID}/project/${listID}/dep-graph`})
+      const responseDepgraph = await this.requestManager.request({verb: "GET", url: `/org/${this.listOrgID}/project/${listID}/dep-graph`})
+      let existingDepGraphFromAPI: depGraphFromAPI = responseDepgraph.data
       
       existingDepGraphFromAPI.depGraph.pkgs.forEach(pkg => {
         if(pkg.id == `${args.dep}@${args.version}`){

@@ -26,8 +26,8 @@ export default abstract class SnykCommand extends Command {
         const { flags } = this.parse(this.constructor as Input<typeof SnykCommand.flags>);
 
         this.parsedFlags = flags;
-        
-        const accessibleOrgs: AccessibleOrgsList = await this.requestManager.request({verb: "GET", url: '/orgs'})
+        const responseAccessibleOrgs = await this.requestManager.request({verb: "GET", url: '/orgs'})
+        const accessibleOrgs: AccessibleOrgsList = responseAccessibleOrgs.data
         for(let i=0; i<accessibleOrgs.orgs.length; i++){
             if(accessibleOrgs.orgs[i].name.toLocaleLowerCase().includes('disallow')) {
                 this.listOrgName = accessibleOrgs.orgs[i].name
