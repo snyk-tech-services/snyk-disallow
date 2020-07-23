@@ -6,7 +6,7 @@ import { Input, OutputArgs, OutputFlags } from '@oclif/parser';
 export default abstract class SnykCommand extends Command {
     
 
-    requestManager = new requestsManager()
+    requestManager = new requestsManager({userAgentPrefix:'snyk-disallow'})
 
     supportedPackageManager = [
         'deb','gomodules','gradle','maven','pip','rpm','rubygems','cocoapods'

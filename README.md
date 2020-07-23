@@ -30,7 +30,7 @@ or
 
 # Usage
 
-[![asciicast](https://storage.googleapis.com/snyk-technical-services.appspot.com/snyk-disallow-asciinema-poster.png)](https://asciinema.org/a/Lj9wv63Xc6nW9sMeJoWnfPAab)
+[![asciicast](https://storage.googleapis.com/snyk-technical-services.appspot.com/snyk-disallow-asciinema-poster.png)](https://asciinema.org/a/QWsTuNeUVf8dw5yn2DcpkArnf)
 
 # Read-only usage
 Get a viewer token for the Snyk Group to get a read|test-only token for CI or similar systems. (Ask your Customer Success Manager)
