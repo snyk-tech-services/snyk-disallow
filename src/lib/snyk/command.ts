@@ -9,7 +9,7 @@ export default abstract class SnykCommand extends Command {
     requestManager = new requestsManager({userAgentPrefix:'snyk-disallow'})
 
     supportedPackageManager = [
-        'deb','gomodules','gradle','maven','pip','rpm','rubygems','cocoapods'
+        'deb','gomodules','gradle','maven','pip','rpm','rubygems','cocoapods', 'npm', 'yarn'
     ]
     
     listOrgName = ''
