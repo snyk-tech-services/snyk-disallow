@@ -10,7 +10,7 @@
     "@oclif/command": "^1.6.1",
     "@oclif/config": "^1.15.1",
     "@oclif/plugin-help": "^3.0.1",
-    "@snyk/dep-graph": "^1.19.0",
+    "@snyk/dep-graph": "^1.19.4",
     "chalk": "^4.0.0",
     "cli-ux": "^5.4.6",
     "globby": "^10.0.2",
