@@ -12,7 +12,7 @@
     "@oclif/plugin-help": "^3.3.0",
     "@snyk/dep-graph": "^1.19.0",
     "chalk": "^4.0.0",
-    "cli-ux": "^5.4.6",
+    "cli-ux": "^5.6.4",
     "globby": "^10.0.2",
     "snyk": "^1.518.0",
     "snyk-request-manager": "^1.4.3",
