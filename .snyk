@@ -7,14 +7,14 @@ ignore:
         reason: no fix available and not applicable in client side situation
         expires: 2022-01-01T00:00:00.000Z
         created: 2021-10-05T13:44:03.115Z
-      '@oclif/plugin-help > @oclif/core > lodash.template':
-        reason: no fix available and not applicable in client side situation
-        expires: '2022-03-25T16:17:01.602Z'
     - '@oclif/command > @oclif/plugin-help > @oclif/core > lodash.template':
         reason: no fix available
         expires: '2022-03-25T16:17:01.602Z'
     - cli-ux > @oclif/command > @oclif/plugin-help > @oclif/core > lodash.template:
         reason: no fix available
+        expires: '2022-03-25T16:17:01.602Z'
+    - '@oclif/plugin-help > @oclif/core > lodash.template':
+        reason: no fix available and not applicable in client side situation
         expires: '2022-03-25T16:17:01.602Z'
 # patches apply the minimum changes required to fix a vulnerability
 patch:
