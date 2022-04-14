@@ -9,7 +9,7 @@
   "dependencies": {
     "@oclif/command": "^1.6.1",
     "@oclif/config": "^1.15.1",
-    "@oclif/plugin-help": "^3.3.0",
+    "@oclif/plugin-help": "^3.3.1",
     "@snyk/dep-graph": "^1.19.0",
     "chalk": "^4.0.0",
     "cli-ux": "^5.6.4",
