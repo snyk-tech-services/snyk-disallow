@@ -8,7 +8,9 @@ Snyk Disallow tool
 [![CircleCI](https://circleci.com/gh/snyk-tech-services/snyk-disallow/tree/master.svg?style=shield)](https://circleci.com/gh/snyk-tech-services/snyk-disallow/tree/master)
 [![Downloads/week](https://img.shields.io/npm/dw/snyk-disallow.svg)](https://npmjs.org/package/snyk-disallow)
 [![License](https://img.shields.io/npm/l/snyk-disallow.svg)](https://github.com/snyk-tech-services/snyk-disallow/blob/master/package.json)
+[![Not Maintained](https://img.shields.io/badge/Maintenance%20Level-Not%20Maintained-yellow.svg)](https://gist.github.com/cheerfulstoic/d107229326a01ff0f333a1d3476e068d)
 
+**This repository is not in active developemnt and critical bug fixes only will be considered.**
 # Pre-requisites
 - Paid plan.\
 snyk-disallow uses Snyk APIs, only available in paid plans.
