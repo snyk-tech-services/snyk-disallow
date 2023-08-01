@@ -8,10 +8,10 @@ Snyk Disallow tool
 [![CircleCI](https://circleci.com/gh/snyk-tech-services/snyk-disallow/tree/master.svg?style=shield)](https://circleci.com/gh/snyk-tech-services/snyk-disallow/tree/master)
 [![Downloads/week](https://img.shields.io/npm/dw/snyk-disallow.svg)](https://npmjs.org/package/snyk-disallow)
 [![License](https://img.shields.io/npm/l/snyk-disallow.svg)](https://github.com/snyk-tech-services/snyk-disallow/blob/master/package.json)
-[![Inactively Maintained](https://img.shields.io/badge/Maintenance%20Level-Inactively%20Maintained-yellowgreen.svg)](https://gist.github.com/cheerfulstoic/d107229326a01ff0f333a1d3476e068d)
+[![Not Maintained](https://img.shields.io/badge/Maintenance%20Level-Not%20Maintained-yellow.svg)](https://gist.github.com/cheerfulstoic/d107229326a01ff0f333a1d3476e068d)
 
 
-**This repository is in maintenance mode, no new features are being developed. Bug & security fixes will continue to be delivered. Open source contributions are welcome for small features & fixes (no breaking changes)**
+⚠️ **This repository is now deprecated**
 
 # Pre-requisites
 - Paid plan.\
